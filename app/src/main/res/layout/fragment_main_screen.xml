@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_main_screen_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    android:padding="@dimen/main_screen_layout_padding"
+    tools:context=".MainScreenFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stopwatch_one_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_border">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_hour_textview"
+            style="@style/DigitsStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_one_hour_minutes_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_hour_minutes_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_one_minutes_textview"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_one_hour_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_minutes_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_one_minutes_seconds_separator"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_one_hour_minutes_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_minutes_seconds_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_one_minutes_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_seconds_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_one_minutes_seconds_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_hour_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/hour_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_one_hour_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_one_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_hour_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_minutes_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/minutes_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_one_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_one_minutes_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_minutes_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_seconds_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/seconds_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_one_seconds_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_one_seconds_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_seconds_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_seconds_counter_textview"
+            style="@style/DigitsSecondsCounterStyle"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_one_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_one_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_hour_tip"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_one_seconds_counter_tip"
+            style="@style/DigitsSecondsTipStyle"
+            android:text="@string/seconds_counter_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_one_seconds_counter_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_one_seconds_counter_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_seconds_counter_textview" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_one_start_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/start_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_one_seconds_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_one_seconds_textview"
+            tools:text="start" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_one_stop_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/stop_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_one_seconds_counter_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_one_seconds_counter_textview"
+            tools:text="stop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/stopwatch_two_enable_checkbox"
+        style="@style/CheckboxStyle"
+        android:text="@string/second_stopwatch_checkbox"
+        tools:checked="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stopwatch_two_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_hour_textview"
+            style="@style/DigitsStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_two_hour_minutes_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_hour_minutes_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_two_minutes_textview"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_two_hour_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_minutes_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_two_minutes_seconds_separator"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_two_hour_minutes_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_minutes_seconds_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_two_minutes_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_seconds_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_two_minutes_seconds_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_hour_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/hour_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_two_hour_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_two_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_hour_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_minutes_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/minutes_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_two_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_two_minutes_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_minutes_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_seconds_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/seconds_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_two_seconds_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_two_seconds_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_seconds_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_seconds_counter_textview"
+            style="@style/DigitsSecondsCounterStyle"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_two_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_two_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_hour_tip"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_two_seconds_counter_tip"
+            style="@style/DigitsSecondsTipStyle"
+            android:text="@string/seconds_counter_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_two_seconds_counter_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_two_seconds_counter_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_seconds_counter_textview" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_two_start_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/start_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_two_seconds_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_two_seconds_textview"
+            tools:text="start" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_two_stop_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/stop_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_two_seconds_counter_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_two_seconds_counter_textview"
+            tools:text="stop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/stopwatch_three_enable_checkbox"
+        style="@style/CheckboxStyle"
+        android:text="@string/third_stopwatch_checkbox"
+        android:visibility="gone"
+        tools:checked="true"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/stopwatch_three_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_hour_textview"
+            style="@style/DigitsStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_three_hour_minutes_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_hour_minutes_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_three_minutes_textview"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_three_hour_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_minutes_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintEnd_toStartOf="@id/stopwatch_three_minutes_seconds_separator"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_three_hour_minutes_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_minutes_seconds_separator"
+            style="@style/DigitsSeparatorStyle"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_three_minutes_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_seconds_textview"
+            style="@style/DigitsStyle"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toEndOf="@id/stopwatch_three_minutes_seconds_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_hour_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/hour_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_three_hour_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_three_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_hour_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_minutes_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/minutes_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_three_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_three_minutes_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_minutes_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_seconds_tip"
+            style="@style/DigitsTipsStyle"
+            android:text="@string/seconds_tip_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_three_seconds_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_three_seconds_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_seconds_textview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_seconds_counter_textview"
+            style="@style/DigitsSecondsCounterStyle"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_three_minutes_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_three_hour_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_hour_tip"
+            tools:text="00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopwatch_three_seconds_counter_tip"
+            style="@style/DigitsSecondsTipStyle"
+            android:text="@string/seconds_counter_text"
+            app:layout_constraintEnd_toEndOf="@id/stopwatch_three_seconds_counter_textview"
+            app:layout_constraintStart_toStartOf="@id/stopwatch_three_seconds_counter_textview"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_seconds_counter_textview" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_three_start_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/start_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_three_seconds_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_three_seconds_textview"
+            tools:text="start" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_three_stop_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/stop_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/stopwatch_three_seconds_counter_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/stopwatch_three_seconds_counter_textview"
+            tools:text="stop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

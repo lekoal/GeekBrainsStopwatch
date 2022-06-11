@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+<!--    My colors-->
+    <color name="background_color">#318C6E6E</color>
+    <color name="shadows_color">#54615555</color>
+    <color name="main_windows_color">#31A19090</color>
+    <color name="digits_background_color">#E6E3E3</color>
+    <color name="action_buttons_background_color">#BA655A5A</color>
+    <color name="checkbox_checked_color">#474040</color>
 </resources>
