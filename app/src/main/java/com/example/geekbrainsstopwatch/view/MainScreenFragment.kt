@@ -172,4 +172,9 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
             resetCounting(it.id)
         }
     }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+    }
 }
