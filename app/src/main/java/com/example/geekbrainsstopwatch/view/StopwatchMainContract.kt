@@ -14,8 +14,8 @@ interface StopwatchMainContract {
         abstract fun stopCount(viewId: Int)
         abstract fun resetCount(viewId: Int)
         abstract fun onRestore()
-        abstract val firstStopwatchDigits: LiveData<Long>
-        abstract val secondStopwatchDigits: LiveData<Long>
-        abstract val thirdStopwatchDigits: LiveData<Long>
+        abstract val firstStopwatchDigits: LiveData<Int>
+        abstract val secondStopwatchDigits: LiveData<Int>
+        abstract val thirdStopwatchDigits: LiveData<Int>
     }
 }

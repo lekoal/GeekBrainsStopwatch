@@ -5,13 +5,13 @@ import com.example.geekbrainsstopwatch.R
 import kotlinx.coroutines.*
 
 class MainViewModel : StopwatchMainContract.ViewModel() {
-    override val firstStopwatchDigits: MutableLiveData<Long> = MutableLiveData(0L)
-    override val secondStopwatchDigits: MutableLiveData<Long> = MutableLiveData(0L)
-    override val thirdStopwatchDigits: MutableLiveData<Long> = MutableLiveData(0L)
+    override val firstStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
+    override val secondStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
+    override val thirdStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
 
-    private var firstCount = 0L
-    private var secondCount = 0L
-    private var thirdCount = 0L
+    private var firstCount = 0
+    private var secondCount = 0
+    private var thirdCount = 0
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
@@ -75,18 +75,18 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
         when(viewId) {
             R.id.stopwatch_one_reset_button -> {
                 stopCount(R.id.stopwatch_one_stop_button)
-                firstCount = 0L
-                firstStopwatchDigits.postValue(0L)
+                firstCount = 0
+                firstStopwatchDigits.postValue(0)
             }
             R.id.stopwatch_two_reset_button -> {
                 stopCount(R.id.stopwatch_two_stop_button)
-                secondCount = 0L
-                secondStopwatchDigits.postValue(0L)
+                secondCount = 0
+                secondStopwatchDigits.postValue(0)
             }
             R.id.stopwatch_three_reset_button -> {
                 stopCount(R.id.stopwatch_three_stop_button)
-                thirdCount = 0L
-                thirdStopwatchDigits.postValue(0L)
+                thirdCount = 0
+                thirdStopwatchDigits.postValue(0)
             }
         }
     }

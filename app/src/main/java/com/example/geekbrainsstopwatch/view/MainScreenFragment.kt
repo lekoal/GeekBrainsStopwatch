@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.example.geekbrainsstopwatch.databinding.FragmentMainScreenBinding
+import com.example.geekbrainsstopwatch.utils.ConvertedTime
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -75,23 +76,45 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
             binding.stopwatchOneStartButton.id -> {
                 viewModel.firstStopwatchDigits.observe(viewLifecycleOwner) {
                     binding.stopwatchOneSecondsCounterTextview.text = it.toString()
+                    val convertedTime = secondsConvert(it)
+
+                    binding.stopwatchOneHourTextview.text = convertedTime.hours.toString()
+                    binding.stopwatchOneMinutesTextview.text = convertedTime.minutes.toString()
+                    binding.stopwatchOneSecondsTextview.text = convertedTime.seconds.toString()
                 }
             }
             binding.stopwatchTwoStartButton.id -> {
                 viewModel.secondStopwatchDigits.observe(viewLifecycleOwner) {
                     binding.stopwatchTwoSecondsCounterTextview.text = it.toString()
+                    val convertedTime = secondsConvert(it)
+
+                    binding.stopwatchTwoHourTextview.text = convertedTime.hours.toString()
+                    binding.stopwatchTwoMinutesTextview.text = convertedTime.minutes.toString()
+                    binding.stopwatchTwoSecondsTextview.text = convertedTime.seconds.toString()
                 }
             }
             binding.stopwatchThreeStartButton.id -> {
                 viewModel.thirdStopwatchDigits.observe(viewLifecycleOwner) {
                     binding.stopwatchThreeSecondsCounterTextview.text = it.toString()
+                    val convertedTime = secondsConvert(it)
+
+                    binding.stopwatchThreeHourTextview.text = convertedTime.hours.toString()
+                    binding.stopwatchThreeMinutesTextview.text = convertedTime.minutes.toString()
+                    binding.stopwatchThreeSecondsTextview.text = convertedTime.seconds.toString()
                 }
             }
         }
     }
 
+    private fun secondsConvert(fullSec: Int): ConvertedTime {
+        val hours: Int = fullSec / 3600
+        val minutes = (fullSec - (hours * 3600)) / 60
+        val seconds = (fullSec - (hours * 3600)) - (minutes * 60)
+        return ConvertedTime(hours, minutes, seconds)
+    }
+
     override fun stopCounting(viewId: Int) {
-        when(viewId) {
+        when (viewId) {
             binding.stopwatchOneStopButton.id -> {
                 viewModel.stopCount(viewId)
             }
@@ -105,7 +128,7 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
     }
 
     override fun resetCounting(viewId: Int) {
-        when(viewId) {
+        when (viewId) {
             binding.stopwatchOneResetButton.id -> {
                 viewModel.resetCount(viewId)
             }
