@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.geekbrainsstopwatch.R
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.flow
 
 class MainViewModel : StopwatchMainContract.ViewModel() {
     override val firstStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
@@ -28,32 +29,56 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
     private var secondJob: Job? = null
     private var thirdJob: Job? = null
 
+    private val firstFlow = flow {
+        while (true) {
+            delay(1000)
+            firstCount++
+            emit(firstCount)
+        }
+    }
+
+    private val secondFlow = flow {
+        while (true) {
+            delay(1000)
+            secondCount++
+            emit(secondCount)
+        }
+    }
+
+    private val thirdFlow = flow {
+        while (true) {
+            delay(1000)
+            thirdCount++
+            emit(thirdCount)
+        }
+    }
+
     override fun runCount(viewId: Int) {
         when (viewId) {
             R.id.stopwatch_one_start_button -> {
                 firstJob = scope.launch {
                     while (true) {
-                        delay(1000)
-                        firstCount++
-                        firstStopwatchDigits.postValue(firstCount)
+                        firstFlow.collect {
+                            firstStopwatchDigits.postValue(it)
+                        }
                     }
                 }
             }
             R.id.stopwatch_two_start_button -> {
                 secondJob = scope.launch {
                     while (true) {
-                        delay(1000)
-                        secondCount++
-                        secondStopwatchDigits.postValue(secondCount)
+                        secondFlow.collect {
+                            secondStopwatchDigits.postValue(it)
+                        }
                     }
                 }
             }
             R.id.stopwatch_three_start_button -> {
                 thirdJob = scope.launch {
                     while (true) {
-                        delay(1000)
-                        thirdCount++
-                        thirdStopwatchDigits.postValue(thirdCount)
+                        thirdFlow.collect {
+                            thirdStopwatchDigits.postValue(it)
+                        }
                     }
                 }
             }
