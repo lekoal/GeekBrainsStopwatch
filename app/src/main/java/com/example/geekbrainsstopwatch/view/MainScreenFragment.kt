@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.example.geekbrainsstopwatch.databinding.FragmentMainScreenBinding
@@ -35,14 +36,7 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
         checkBoxIsChecked(binding.stopwatchTwoEnableCheckbox)
         checkBoxIsChecked(binding.stopwatchThreeEnableCheckbox)
 
-        binding.stopwatchOneStartButton.setOnClickListener {
-            viewModel.runCount(it.id)
-            setTimeDigits(it.id)
-        }
-
-        binding.stopwatchOneStopButton.setOnClickListener {
-            stopCounting(it.id)
-        }
+        setOnButtonsClick()
     }
 
     private fun checkBoxIsChecked(checkBox: CheckBox) {
@@ -55,17 +49,21 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
                     }
                     binding.stopwatchThreeEnableCheckbox.id -> {
                         binding.stopwatchThreeLayout.visibility = View.VISIBLE
+                        binding.stopwatchTwoEnableCheckbox.isEnabled = false
                     }
                 }
 
             } else {
                 when (compoundButton.id) {
                     binding.stopwatchTwoEnableCheckbox.id -> {
+                        viewModel.resetCount(binding.stopwatchTwoResetButton.id)
                         binding.stopwatchTwoLayout.visibility = View.GONE
                         binding.stopwatchThreeEnableCheckbox.visibility = View.GONE
                     }
                     binding.stopwatchThreeEnableCheckbox.id -> {
+                        viewModel.resetCount(binding.stopwatchThreeResetButton.id)
                         binding.stopwatchThreeLayout.visibility = View.GONE
+                        binding.stopwatchTwoEnableCheckbox.isEnabled = true
                     }
                 }
             }
@@ -79,6 +77,16 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
                     binding.stopwatchOneSecondsCounterTextview.text = it.toString()
                 }
             }
+            binding.stopwatchTwoStartButton.id -> {
+                viewModel.secondStopwatchDigits.observe(viewLifecycleOwner) {
+                    binding.stopwatchTwoSecondsCounterTextview.text = it.toString()
+                }
+            }
+            binding.stopwatchThreeStartButton.id -> {
+                viewModel.thirdStopwatchDigits.observe(viewLifecycleOwner) {
+                    binding.stopwatchThreeSecondsCounterTextview.text = it.toString()
+                }
+            }
         }
     }
 
@@ -87,6 +95,59 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
             binding.stopwatchOneStopButton.id -> {
                 viewModel.stopCount(viewId)
             }
+            binding.stopwatchTwoStopButton.id -> {
+                viewModel.stopCount(viewId)
+            }
+            binding.stopwatchThreeStopButton.id -> {
+                viewModel.stopCount(viewId)
+            }
+        }
+    }
+
+    override fun resetCounting(viewId: Int) {
+        when(viewId) {
+            binding.stopwatchOneResetButton.id -> {
+                viewModel.resetCount(viewId)
+            }
+            binding.stopwatchTwoResetButton.id -> {
+                viewModel.resetCount(viewId)
+            }
+            binding.stopwatchThreeResetButton.id -> {
+                viewModel.resetCount(viewId)
+            }
+        }
+    }
+
+    private fun setOnButtonsClick() {
+        setRunOnClick(binding.stopwatchOneStartButton)
+        setRunOnClick(binding.stopwatchTwoStartButton)
+        setRunOnClick(binding.stopwatchThreeStartButton)
+
+        setStopOnClick(binding.stopwatchOneStopButton)
+        setStopOnClick(binding.stopwatchTwoStopButton)
+        setStopOnClick(binding.stopwatchThreeStopButton)
+
+        setResetOnClick(binding.stopwatchOneResetButton)
+        setResetOnClick(binding.stopwatchTwoResetButton)
+        setResetOnClick(binding.stopwatchThreeResetButton)
+    }
+
+    private fun setRunOnClick(button: Button) {
+        button.setOnClickListener {
+            viewModel.runCount(it.id)
+            setTimeDigits(it.id)
+        }
+    }
+
+    private fun setStopOnClick(button: Button) {
+        button.setOnClickListener {
+            stopCounting(it.id)
+        }
+    }
+
+    private fun setResetOnClick(button: Button) {
+        button.setOnClickListener {
+            resetCounting(it.id)
         }
     }
 }

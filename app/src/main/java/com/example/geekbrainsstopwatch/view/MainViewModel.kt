@@ -1,6 +1,5 @@
 package com.example.geekbrainsstopwatch.view
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.geekbrainsstopwatch.R
 import kotlinx.coroutines.*
@@ -28,23 +27,76 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
                         delay(1000)
                         firstCount++
                         firstStopwatchDigits.postValue(firstCount)
-                        Log.i("MY_TAG", firstStopwatchDigits.value.toString())
+                    }
+                }
+            }
+            R.id.stopwatch_two_start_button -> {
+                secondJob = scope.launch {
+                    while (true) {
+                        delay(1000)
+                        secondCount++
+                        secondStopwatchDigits.postValue(secondCount)
+                    }
+                }
+            }
+            R.id.stopwatch_three_start_button -> {
+                thirdJob = scope.launch {
+                    while (true) {
+                        delay(1000)
+                        thirdCount++
+                        thirdStopwatchDigits.postValue(thirdCount)
                     }
                 }
             }
         }
-
     }
 
     override fun stopCount(viewId: Int) {
         when(viewId) {
             R.id.stopwatch_one_stop_button -> {
-                firstJob?.cancel()
+                if (firstJob?.isActive == true) {
+                    firstJob?.cancel()
+                }
+            }
+            R.id.stopwatch_two_stop_button -> {
+                if (secondJob?.isActive == true) {
+                    secondJob?.cancel()
+                }
+            }
+            R.id.stopwatch_three_stop_button -> {
+                if (thirdJob?.isActive == true) {
+                    thirdJob?.cancel()
+                }
+            }
+        }
+    }
+
+    override fun resetCount(viewId: Int) {
+        when(viewId) {
+            R.id.stopwatch_one_reset_button -> {
+                stopCount(R.id.stopwatch_one_stop_button)
+                firstCount = 0L
+                firstStopwatchDigits.postValue(0L)
+            }
+            R.id.stopwatch_two_reset_button -> {
+                stopCount(R.id.stopwatch_two_stop_button)
+                secondCount = 0L
+                secondStopwatchDigits.postValue(0L)
+            }
+            R.id.stopwatch_three_reset_button -> {
+                stopCount(R.id.stopwatch_three_stop_button)
+                thirdCount = 0L
+                thirdStopwatchDigits.postValue(0L)
             }
         }
     }
 
     override fun onRestore() {
 
+    }
+
+    override fun onCleared() {
+        scope.cancel()
+        super.onCleared()
     }
 }
