@@ -1,7 +1,7 @@
 package com.example.geekbrainsstopwatch.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.geekbrainsstopwatch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
