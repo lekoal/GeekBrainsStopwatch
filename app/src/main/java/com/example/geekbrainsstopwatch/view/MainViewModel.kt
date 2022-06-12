@@ -1,5 +1,6 @@
 package com.example.geekbrainsstopwatch.view
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.geekbrainsstopwatch.R
 import kotlinx.coroutines.*
@@ -9,21 +10,29 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
     override val secondStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
     override val thirdStopwatchDigits: MutableLiveData<Int> = MutableLiveData(0)
 
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        Log.e("SOME_ERROR", "Error found: $throwable")
+    }
+
     private var firstCount = 0
     private var secondCount = 0
     private var thirdCount = 0
 
-    private val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(
+        Dispatchers.IO
+                + coroutineExceptionHandler
+                + SupervisorJob()
+    )
 
     private var firstJob: Job? = null
     private var secondJob: Job? = null
     private var thirdJob: Job? = null
 
     override fun runCount(viewId: Int) {
-        when(viewId) {
+        when (viewId) {
             R.id.stopwatch_one_start_button -> {
                 firstJob = scope.launch {
-                    while(true) {
+                    while (true) {
                         delay(1000)
                         firstCount++
                         firstStopwatchDigits.postValue(firstCount)
@@ -52,7 +61,7 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
     }
 
     override fun stopCount(viewId: Int) {
-        when(viewId) {
+        when (viewId) {
             R.id.stopwatch_one_stop_button -> {
                 if (firstJob?.isActive == true) {
                     firstJob?.cancel()
@@ -72,7 +81,7 @@ class MainViewModel : StopwatchMainContract.ViewModel() {
     }
 
     override fun resetCount(viewId: Int) {
-        when(viewId) {
+        when (viewId) {
             R.id.stopwatch_one_reset_button -> {
                 stopCount(R.id.stopwatch_one_stop_button)
                 firstCount = 0
