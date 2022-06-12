@@ -53,7 +53,6 @@ class MainScreenFragment : Fragment(), StopwatchMainContract.MainScreenView {
                         binding.stopwatchTwoEnableCheckbox.isEnabled = false
                     }
                 }
-
             } else {
                 when (compoundButton.id) {
                     binding.stopwatchTwoEnableCheckbox.id -> {
