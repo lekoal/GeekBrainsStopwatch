@@ -11,4 +11,5 @@
     <string name="start_button_text">start</string>
     <string name="stop_button_text">stop</string>
     <string name="third_stopwatch_checkbox">Enable third stopwatch</string>
+    <string name="reset_button_text">Reset</string>
 </resources>

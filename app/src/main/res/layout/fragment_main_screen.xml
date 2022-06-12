@@ -8,7 +8,7 @@
     android:background="@color/background_color"
     android:orientation="vertical"
     android:padding="@dimen/main_screen_layout_padding"
-    tools:context=".MainScreenFragment">
+    tools:context=".view.MainScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/stopwatch_one_layout"
@@ -100,17 +100,21 @@
             android:text="@string/start_button_text"
             app:layout_constraintBottom_toBottomOf="@id/stopwatch_one_seconds_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_one_seconds_textview"
-            tools:text="start" />
+            app:layout_constraintTop_toTopOf="@id/stopwatch_one_seconds_textview" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/stopwatch_one_stop_button"
             style="@style/ActionButtonsStyle"
             android:text="@string/stop_button_text"
-            app:layout_constraintBottom_toBottomOf="@id/stopwatch_one_seconds_counter_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_one_seconds_counter_textview"
-            tools:text="stop" />
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_start_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_one_reset_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/reset_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_one_stop_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -212,17 +216,21 @@
             android:text="@string/start_button_text"
             app:layout_constraintBottom_toBottomOf="@id/stopwatch_two_seconds_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_two_seconds_textview"
-            tools:text="start" />
+            app:layout_constraintTop_toTopOf="@id/stopwatch_two_seconds_textview" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/stopwatch_two_stop_button"
             style="@style/ActionButtonsStyle"
             android:text="@string/stop_button_text"
-            app:layout_constraintBottom_toBottomOf="@id/stopwatch_two_seconds_counter_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_two_seconds_counter_textview"
-            tools:text="stop" />
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_start_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_two_reset_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/reset_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_two_stop_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -326,17 +334,21 @@
             android:text="@string/start_button_text"
             app:layout_constraintBottom_toBottomOf="@id/stopwatch_three_seconds_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_three_seconds_textview"
-            tools:text="start" />
+            app:layout_constraintTop_toTopOf="@id/stopwatch_three_seconds_textview" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/stopwatch_three_stop_button"
             style="@style/ActionButtonsStyle"
             android:text="@string/stop_button_text"
-            app:layout_constraintBottom_toBottomOf="@id/stopwatch_three_seconds_counter_textview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/stopwatch_three_seconds_counter_textview"
-            tools:text="stop" />
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_start_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/stopwatch_three_reset_button"
+            style="@style/ActionButtonsStyle"
+            android:text="@string/reset_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stopwatch_three_stop_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

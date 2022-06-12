@@ -1,4 +1,4 @@
-package com.example.geekbrainsstopwatch
+package com.example.geekbrainsstopwatch.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
